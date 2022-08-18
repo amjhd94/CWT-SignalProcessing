@@ -1,15 +1,15 @@
 # Continuous Wavelet Transform based Signal Processing tool for time-frequency denoising and deconstruction of time series
-Time-frequency analysis of any given time series or signals in general, can provide valuable information about their nature. Information such as frequency (mode) content, stationarity and non-stationarity, noise pollution, noise color, etc. One of the most powerful techniques for time-frequency analysis and manipulation of time series is Empirical Mode Decomposition ([EMD](https://www.ripublication.com/irph/ijeee_spl/ijeeev7n8_14.pdf)) and its derivatives, however, they fail in many scenarios where signal-to-noise ratios are relatively small or where the signal has a high-velocity non-stationary nature or the signal has weak but important underlying frequency content (modes). Because of this, I developed a [Wavelet-Based time-frequency analysis techinque](https://www.sciencedirect.com/science/article/abs/pii/S0888327021000868) that overcomes all of the aforementioned issues.
+Time-frequency analysis of any given time series or signals in general, can provide valuable information about their nature. Information such as frequency (mode) content, stationarity and non-stationarity, noise pollution, noise color, etc. One of the most powerful techniques for time-frequency analysis and manipulation of time series is Empirical Mode Decomposition ([EMD](https://www.ripublication.com/irph/ijeee_spl/ijeeev7n8_14.pdf)) and its derivatives, however, they fail in many scenarios where signal-to-noise ratios are relatively small or where the signal has a high-velocity non-stationary nature or the signal has weak but important underlying frequency content (modes). Because of this, I developed a [Wavelet-Based time-frequency analysis technique](https://www.sciencedirect.com/science/article/abs/pii/S0888327021000868) that overcomes all of the aforementioned issues.
 
-In this project I take advantage of Parseval's theorem, fast Fourier transfor and its inverse for fast and accurate computation of the continuous wavelet transform of 1-dimensional signals and the inverse continuous wavelet transforms, see `freq_inst_morlet.m` and `Fast_Morlet_ICWT_Harmonic_decomp.m` source codes. I have used these codes in the following applications:
+In this project I take advantage of Parseval's theorem, fast Fourier transform and its inverse for fast and accurate computation of the continuous wavelet transform of 1-dimensional signals and the inverse continuous wavelet transforms, see `freq_inst_morlet.m` and `Fast_Morlet_ICWT_Harmonic_decomp.m` source codes. I have used these codes in the following applications:
 
-- Time-frequency decomposition of time series (an improved and more accurate replacement for EMD-based mothods);
+- Time-frequency decomposition of time series (an improved and more accurate replacement for EMD-based methods);
 
 - Signal denoising;
 
 - Custom time-frequency filtration.
 
-In the process of developing this technique (please refer to `signal_denoising_and_deconstruction_demo.m` to see a demo of it implementation) I noticed that [boundary effects](https://www.mathworks.com/help/wavelet/ug/boundary-effects-and-the-cone-of-influence.html) of wavelet transform can sometimes make it inconvenient to properly interpret time-frequency contents of the signals and more importantly, interfere with accurate computation of the inverse wavelet transforms. As I failed to find any articles, books or codes that addressd this problem outside the scope of traditional signal padding, I developed a time-frequency extrapolation algorithm that eliminates the aforementioned boundary effects (please see `Boundary_effect_treatment.m` for a simple implementaion demo).
+In the process of developing this technique (please refer to `signal_denoising_and_deconstruction_demo.m` to see a demo of it implementation) I noticed that [boundary effects](https://www.mathworks.com/help/wavelet/ug/boundary-effects-and-the-cone-of-influence.html) of wavelet transform can sometimes make it inconvenient to properly interpret time-frequency contents of the signals and more importantly, interfere with accurate computation of the inverse wavelet transforms. As I failed to find any articles, books or codes that address this problem outside the scope of traditional signal padding, I developed a time-frequency extrapolation algorithm that eliminates the aforementioned boundary effects (please see `Boundary_effect_treatment.m` for a simple implementation demo).
 
 ## Getting Started
 The codes were written, run and tested by MATLAB 2018a.
@@ -17,7 +17,7 @@ The codes were written, run and tested by MATLAB 2018a.
 The codes are self-contained, so everything should run smoothly.
 
 ## Tutorial
-For the sake of brevity I'll provide a tutorial on the `signal_denoising_and_deconstruction_demo.m` code. The boundary effect treatment code (`Boundary_effect_treatment.m`) is concisely written and should be relatively easy to undestand on its own.
+For the sake of brevity, I'll provide a tutorial on the `signal_denoising_and_deconstruction_demo.m` code. The boundary effect treatment code (`Boundary_effect_treatment.m`) is concisely written and should be relatively easy to undestand on its own.
 
 In the demo code included in this repository I show the implementation of the time-frequency analysis technique I developed to separate all the nonstationary time-scales of a time series. The figure below is an artificially generated time series with two known nonstationary time-scales, so that we can quantify the accuracy of my time-frequency analysis method.
 
@@ -42,7 +42,7 @@ x = sum(xx,2);
 dt=(t(2)-t(1)); % Time increment duration (needs to be constant!)
 Fs = 2*pi/dt; % Sampling frequency
 representative_signal = 1; % The signal with the richest time-frequency content (in case the input is an array of column vectors)
-Fo = 2; % Mother Wavelet frequency (Small/large values lead to high temporal/frequency resolution wavelet trasnform surface)
+Fo = 2; % Mother Wavelet frequency (Small/large values lead to high temporal/frequency resolution wavelet transform surface)
 fi = 0; % Lower bound of the frequency range of interest
 ff = 10; % Upper bound of the frequency range of interest
 nF = 200; % Number of frequencies in the [fi, ff] interval
