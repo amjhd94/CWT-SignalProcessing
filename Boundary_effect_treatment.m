@@ -5,6 +5,7 @@ set(groot,'defaulttextinterpreter','latex');
 set(groot, 'defaultAxesTickLabelInterpreter','latex');
 set(groot, 'defaultLegendInterpreter','latex');
 set(groot,'defaultAxesFontSize',12)
+addpath('core')
 %% Constructing signal
 t = linspace(0,70,2^10)';
 dt = t(2)-t(1);
