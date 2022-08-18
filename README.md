@@ -36,7 +36,7 @@ x = sum(xx,2);
 
 <img src="https://user-images.githubusercontent.com/110791799/185438351-6dc453ba-5682-43b9-8c11-7a787396c192.png" alt="obj_fcn" width="500"/>
 
-1- Once we have the time series as a column vector (Note: the code can handle an array of column vectors), the following code creates a wavelet transform surface that can be used to manually choose and separate the time-scales.
+### 1- Once we have the time series as a column vector (Note: the code can handle an array of column vectors), the following code creates a wavelet transform surface that can be used to manually choose and separate the time-scales.
 
 ```Matlab
 dt=(t(2)-t(1)); % Time increment duration (needs to be constant!)
